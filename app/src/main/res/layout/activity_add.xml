@@ -1,8 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".AddActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/add_hint_name"
+        android:inputType="textCapSentences"
+        android:textColor="@color/lightish_blue"
+        android:textSize="24sp"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/add_hint_price"
+        android:inputType="number"
+        android:textColor="@color/lightish_blue"
+        android:textSize="24sp"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/addBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="56dp"
+        android:background="@null"
+        android:drawableStart="@drawable/ic_check"
+        android:drawablePadding="6dp"
+        android:enabled="false"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/add_button"
+        android:textColor="@color/color_button_text"
+        android:textSize="14sp" />
+
+</LinearLayout>

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--Main colors-->
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#7ED321</color>
+
+    <!--Custom colors-->
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="lightish_blue">#3574FA</color>
+    <color name="medium_grey">#656565</color>
+    <color name="dark_sky_blue">#4A90E2</color>
+    <color name="btn_color_disabled">#EAEAEA</color>
+    <color name="btn_color_enabled">@color/colorAccent</color>
+
 </resources>
