@@ -12,8 +12,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
+
         </activity>
-        <activity android:name=".AddActivity">
+        <activity android:name=".AddActivity" />
+        <activity android:name=".ItemActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
