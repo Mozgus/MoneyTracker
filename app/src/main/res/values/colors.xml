@@ -8,7 +8,8 @@
 
     <!--Custom colors-->
     <color name="white">#FFF</color>
-    <color name="black">#000</color>
+    <color name="perry_winkle_70">#B38BAAEF</color>
+    <color name="marigold">#FFC107</color>
     <color name="lightish_blue">#3574FA</color>
     <color name="medium_grey">#656565</color>
     <color name="dark_sky_blue">#4A90E2</color>

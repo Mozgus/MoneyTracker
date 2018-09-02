@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Money Tracker</string>
+    <string name="incomes">Incomes</string>
+    <string name="expenses">Expenses</string>
+    <string name="balance">Balance</string>
 
     <!--Add Screen-->
     <string name="add_hint_name">Name</string>
     <string name="add_hint_price">Price</string>
     <string name="add_button">Add</string>
+
+    <!-- TODO: Remove this placeholder text -->
+    <string name="hello_balance_fragment" translatable="false">Hello balance fragment</string>
+
+    <!--Main Screen-->
+    <string name="main_tab_incomes" translatable="false">@string/incomes</string>
+    <string name="main_tab_expenses" translatable="false">@string/expenses</string>
+    <string name="main_tab_balance" translatable="false">@string/balance</string>
+
+    <string-array name="main_tabs">
+        <item>@string/incomes</item>
+        <item>@string/expenses</item>
+        <item>@string/balance</item>
+    </string-array>
 
 </resources>

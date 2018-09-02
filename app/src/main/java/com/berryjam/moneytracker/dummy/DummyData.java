@@ -1,29 +1,12 @@
-package com.berryjam.moneytracker;
+package com.berryjam.moneytracker.dummy;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import com.berryjam.moneytracker.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemActivity extends AppCompatActivity {
-    ItemsAdapter adapter = new ItemsAdapter();
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item);
-
-        RecyclerView recyclerView = findViewById(R.id.recycler);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        adapter.setItems(createTestItems());
-    }
-
-    private List<Item> createTestItems() {
+public class DummyData {
+    public static List<Item> getDummyItems() {
         List<Item> items = new ArrayList<>();
         items.add(new Item("Баклажан", "70р"));
         items.add(new Item("Огурцы", "65р"));
@@ -45,5 +28,4 @@ public class ItemActivity extends AppCompatActivity {
         items.add(new Item("Арбуз", "170р"));
         return items;
     }
-
 }
