@@ -17,7 +17,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(Item item) {
         itemName.setText(item.getName());
-        itemPrice.setText(item.getPrice());
+        itemPrice.setText(String.valueOf(item.getPrice()));
     }
 
 }

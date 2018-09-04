@@ -10,17 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.berryjam.moneytracker.dummy.DummyData;
+import java.util.List;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ItemsFragment extends Fragment {
     public static final String KEY_TYPE = "type";
-    public static final int TYPE_INCOMES = 1;
-    public static final int TYPE_EXPENSES = 2;
 
-    public static ItemsFragment newInstance(int type) {
+    public static ItemsFragment newInstance(String type) {
         ItemsFragment fragment = new ItemsFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(ItemsFragment.KEY_TYPE, type);
+        bundle.putString(ItemsFragment.KEY_TYPE, type);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -30,17 +33,19 @@ public class ItemsFragment extends Fragment {
     }
 
     private ItemsAdapter adapter;
-    private int type;
+    private String type;
+    private Api api;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
         if (args != null) {
-            type = args.getInt(KEY_TYPE);
+            type = args.getString(KEY_TYPE);
         }
+        api = ((App) Objects.requireNonNull(getActivity()).getApplication()).getApi();
         adapter = new ItemsAdapter();
-        adapter.setItems(DummyData.getDummyItems());
+        loadItems();
     }
 
     @Override
@@ -56,6 +61,22 @@ public class ItemsFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+    }
+
+    public void loadItems() {
+        Call<List<Item>> call = api.getItems(type);
+        call.enqueue(new Callback<List<Item>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Item>> call, @NonNull Response<List<Item>> response) {
+                List<Item> items = response.body();
+                adapter.setItems(items);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Item>> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
 }
