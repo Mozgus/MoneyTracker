@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class AddActivity extends AppCompatActivity {
+    public static final String KEY_TYPE = "type";
     private EditText nameInput;
     private EditText priceInput;
     private Button addBtn;
