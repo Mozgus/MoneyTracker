@@ -2,18 +2,22 @@
 <resources>
 
     <!--Main colors-->
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#7ED321</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">@color/orange_a400</color>
 
     <!--Custom colors-->
-    <color name="white">#FFF</color>
+    <color name="white">#ffffff</color>
+    <color name="white_hint">#dbdbdb</color>
+    <color name="color_disabled">#EAEAEA</color>
     <color name="perry_winkle_70">#B38BAAEF</color>
-    <color name="marigold">#FFC107</color>
-    <color name="lightish_blue">#3574FA</color>
     <color name="medium_grey">#656565</color>
+    <color name="orange_a400">#FF9100</color>
+    <color name="light_green_a700">#64DD17</color>
+    <color name="lightish_blue">#3574FA</color>
     <color name="dark_sky_blue">#4A90E2</color>
-    <color name="btn_color_disabled">#EAEAEA</color>
-    <color name="btn_color_enabled">@color/colorAccent</color>
+
+    <color name="btn_color_disabled">@color/color_disabled</color>
+    <color name="btn_color_enabled">@color/light_green_a700</color>
 
 </resources>
