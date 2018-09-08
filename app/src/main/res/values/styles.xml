@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--Custom theme for second activity-->
+    <style name="AddItemTheme" parent="AppTheme">
+        <item name="colorAccent">@color/lightish_blue</item>
+    </style>
+
 </resources>
