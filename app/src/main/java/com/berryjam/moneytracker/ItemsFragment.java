@@ -1,5 +1,6 @@
 package com.berryjam.moneytracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,9 @@ import java.util.Objects;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
+import static com.berryjam.moneytracker.MainActivity.REQUEST_CODE;
 
 public class ItemsFragment extends Fragment {
     public static final String KEY_TYPE = "type";
@@ -61,6 +65,15 @@ public class ItemsFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            Item item = data.getParcelableExtra(AddActivity.KEY_ITEM);
+            adapter.addItem(item);
+        }
     }
 
     public void loadItems() {

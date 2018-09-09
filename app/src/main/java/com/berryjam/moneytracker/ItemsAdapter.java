@@ -19,6 +19,11 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void addItem(Item item) {
+        this.items.add(item);
+        notifyItemInserted(items.size() - 1);
+    }
+
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
