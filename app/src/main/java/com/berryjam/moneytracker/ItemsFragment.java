@@ -72,7 +72,9 @@ public class ItemsFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             Item item = data.getParcelableExtra(AddActivity.KEY_ITEM);
-            adapter.addItem(item);
+            if (item.getType().equals(type)) {
+                adapter.addItem(item);
+            }
         }
     }
 
