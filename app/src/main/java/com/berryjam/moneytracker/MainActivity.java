@@ -26,11 +26,13 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         tabLayout = findViewById(R.id.tab_layout);
-        mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(mainPagesAdapter);
-        tabLayout.setupWithViewPager(viewPager);
         floatingActionButton = findViewById(R.id.fab);
+
+        mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(), this);
+        viewPager.setAdapter(mainPagesAdapter);
+        viewPager.addOnPageChangeListener(new PageListener());
+        tabLayout.setupWithViewPager(viewPager);
         setSupportActionBar(toolbar);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +54,31 @@ public class MainActivity extends AppCompatActivity {
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
             fragment.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    class PageListener implements ViewPager.OnPageChangeListener {
+
+        @Override
+        public void onPageScrolled(int i, float v, int i1) {
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            switch (position) {
+                case MainPagesAdapter.PAGE_EXPENSES:
+                case MainPagesAdapter.PAGE_INCOMES:
+                    floatingActionButton.show();
+                    break;
+                case MainPagesAdapter.PAGE_BALANCE:
+                    floatingActionButton.hide();
+                    break;
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+        }
+
     }
 
 }

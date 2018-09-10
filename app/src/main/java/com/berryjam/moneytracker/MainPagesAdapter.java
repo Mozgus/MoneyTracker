@@ -10,7 +10,7 @@ public class MainPagesAdapter extends FragmentPagerAdapter {
 
     static final int PAGE_INCOMES = 0;
     static final int PAGE_EXPENSES = 1;
-    private static final int PAGE_BALANCE = 2;
+    static final int PAGE_BALANCE = 2;
     private static final int PAGES_COUNT = 3;
     private String[] pagesTitles;
 
