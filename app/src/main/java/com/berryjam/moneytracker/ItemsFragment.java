@@ -5,9 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -39,6 +44,7 @@ public class ItemsFragment extends Fragment {
     private ItemsAdapter adapter;
     private String type;
     private Api api;
+    private ActionMode mode;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +55,7 @@ public class ItemsFragment extends Fragment {
         }
         api = ((App) Objects.requireNonNull(getActivity()).getApplication()).getApi();
         adapter = new ItemsAdapter();
+        adapter.setItemsAdapterListener(new ItemsAdapterListenerImpl());
         loadItems();
     }
 
@@ -92,6 +99,91 @@ public class ItemsFragment extends Fragment {
 
             }
         });
+    }
+
+    private void removeSelectedItem() {
+        final List<Integer> selected = adapter.getSelectedItems();
+        for (int i = selected.size() - 1; i >= 0; i--) {
+            adapter.remove(selected.get(i));
+        }
+        mode.finish();
+    }
+
+    class ItemsAdapterListenerImpl implements ItemsAdapterListener {
+        @Override
+        public void onItemClick(Item item, int position) {
+            if (mode == null) return;
+            toggleItem(position);
+        }
+
+        @Override
+        public void onItemLongClick(Item item, int position) {
+            if (null != mode) return;
+            AppCompatActivity activity = (AppCompatActivity) getActivity();
+            if (null != activity)
+                activity.startSupportActionMode(new ActionModeCallback());
+            toggleItem(position);
+        }
+
+        private void toggleItem(int position) {
+            adapter.toggleItem(position);
+            int count = adapter.getSelectedItemCount();
+            if (count > 0) {
+                mode.setTitle(String.format("%s %s",
+                        String.valueOf(count), getString(R.string.selected)));
+            } else {
+                mode.finish();
+            }
+        }
+
+    }
+
+    class ActionModeCallback implements ActionMode.Callback {
+
+        @Override
+        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+            mode = actionMode;
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+            MenuInflater inflater = new MenuInflater(requireContext());
+            inflater.inflate(R.menu.menu_action_mode, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+            if (menuItem.getItemId() == R.id.menu_item_delete) {
+                showConfirmationDialog();
+            }
+            return true;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode actionMode) {
+            adapter.clearSelections();
+            mode = null;
+        }
+
+        private void showConfirmationDialog() {
+            ConfirmDeleteFragment dialog = new ConfirmDeleteFragment();
+            assert getFragmentManager() != null;
+            dialog.show(getFragmentManager(), null);
+            dialog.setListener(new ConfirmDeleteFragment.Listener() {
+                @Override
+                public void onDeleteConfirmed() {
+                    removeSelectedItem();
+                }
+
+                @Override
+                public void onCancelConfirmed() {
+                    mode.finish();
+                }
+            });
+        }
+
     }
 
 }

@@ -2,11 +2,13 @@ package com.berryjam.moneytracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     MainPagesAdapter mainPagesAdapter;
     FloatingActionButton floatingActionButton;
+
+    private ActionMode actionMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onSupportActionModeStarted(@NonNull ActionMode mode) {
+        super.onSupportActionModeStarted(mode);
+        floatingActionButton.hide();
+        tabLayout.setBackgroundColor(getResources().getColor(R.color.color_action_background));
+        actionMode = mode;
+    }
+
+    @Override
+    public void onSupportActionModeFinished(@NonNull ActionMode mode) {
+        super.onSupportActionModeFinished(mode);
+        floatingActionButton.show();
+        tabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        actionMode = null;
+    }
+
     class PageListener implements ViewPager.OnPageChangeListener {
 
         @Override
@@ -77,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onPageScrollStateChanged(int state) {
+            switch (state) {
+                case ViewPager.SCROLL_STATE_DRAGGING:
+                case ViewPager.SCROLL_STATE_SETTLING:
+                    if (null != actionMode) actionMode.finish();
+                    break;
+            }
         }
 
     }
