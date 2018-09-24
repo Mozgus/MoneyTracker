@@ -14,14 +14,21 @@
     <string name="hello_balance_fragment" translatable="false">Hello balance fragment</string>
 
     <!--Main Screen-->
-    <string name="main_tab_incomes" translatable="false">@string/incomes</string>
-    <string name="main_tab_expenses" translatable="false">@string/expenses</string>
-    <string name="main_tab_balance" translatable="false">@string/balance</string>
+    <string name="main_tab_incomes">@string/incomes</string>
+    <string name="main_tab_expenses">@string/expenses</string>
+    <string name="main_tab_balance">@string/balance</string>
 
     <string-array name="main_tabs">
         <item>@string/incomes</item>
         <item>@string/expenses</item>
         <item>@string/balance</item>
     </string-array>
+
+    <!--Dialog-->
+    <string name="delete_dialog_message">Are you sure that you want to delete selected</string>
+
+    <!--Menu-->
+    <string name="menu_item_delete">Delete</string>
+    <string name="selected">selected</string>
 
 </resources>
