@@ -24,5 +24,6 @@
     <color name="btn_color_enabled">@color/light_green_a700</color>
     <color name="item_background_selected">@color/white_five</color>
     <color name="item_background_default">@color/white</color>
+    <color name="auth_version_text">@color/perry_winkle_70</color>
 
 </resources>

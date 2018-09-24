@@ -3,6 +3,8 @@
     <string name="add_hint_name">Название</string>
     <string name="add_hint_price">Цена</string>
     <string name="add_button">Добавить</string>
+    <string name="auth_btn_text">Войти</string>
+    <string name="auth_version_text">Версия 1.0 \n2018</string>
     <string name="balance">Баланс</string>
     <string name="expenses">Расходы</string>
     <string name="incomes">Доходы</string>
