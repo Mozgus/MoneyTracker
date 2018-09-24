@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
@@ -45,6 +47,7 @@ public class ItemsFragment extends Fragment {
     private String type;
     private Api api;
     private ActionMode mode;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +71,19 @@ public class ItemsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        swipeRefreshLayout = view.findViewById(R.id.refresh);
+        swipeRefreshLayout.setColorSchemeColors(
+                ContextCompat.getColor(requireContext(), R.color.light_green_a700),
+                ContextCompat.getColor(requireContext(), R.color.dark_sky_blue),
+                ContextCompat.getColor(requireContext(), R.color.orange_a400),
+                ContextCompat.getColor(requireContext(), R.color.lightish_blue)
+        );
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadItems();
+            }
+        });
         RecyclerView recyclerView = view.findViewById(R.id.recycler);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -90,13 +105,14 @@ public class ItemsFragment extends Fragment {
         call.enqueue(new Callback<List<Item>>() {
             @Override
             public void onResponse(@NonNull Call<List<Item>> call, @NonNull Response<List<Item>> response) {
+                swipeRefreshLayout.setRefreshing(false);
                 List<Item> items = response.body();
                 adapter.setItems(items);
             }
 
             @Override
             public void onFailure(@NonNull Call<List<Item>> call, @NonNull Throwable t) {
-
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
