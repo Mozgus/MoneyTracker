@@ -1,4 +1,4 @@
-package com.berryjam.moneytracker;
+package com.berryjam.moneytracker.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import com.berryjam.moneytracker.add.AddActivity;
+import com.berryjam.moneytracker.R;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";

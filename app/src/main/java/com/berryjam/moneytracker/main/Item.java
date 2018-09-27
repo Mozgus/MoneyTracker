@@ -1,4 +1,4 @@
-package com.berryjam.moneytracker;
+package com.berryjam.moneytracker.main;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -17,13 +17,13 @@ public class Item implements Parcelable {
         this.price = price;
     }
 
-    Item(String name, int price, String type) {
+    public Item(String name, int price, String type) {
         this.name = name;
         this.price = price;
         this.type = type;
     }
 
-    Item(Parcel in) {
+    private Item(Parcel in) {
         id = in.readInt();
         name = in.readString();
         price = in.readInt();

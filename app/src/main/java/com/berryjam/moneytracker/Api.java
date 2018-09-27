@@ -1,5 +1,7 @@
 package com.berryjam.moneytracker;
 
+import com.berryjam.moneytracker.main.Item;
+
 import java.util.List;
 
 import retrofit2.Call;

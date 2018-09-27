@@ -1,4 +1,4 @@
-package com.berryjam.moneytracker;
+package com.berryjam.moneytracker.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.berryjam.moneytracker.add.AddActivity;
+import com.berryjam.moneytracker.Api;
+import com.berryjam.moneytracker.App;
+import com.berryjam.moneytracker.R;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -26,7 +31,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
-import static com.berryjam.moneytracker.MainActivity.REQUEST_CODE;
+import static com.berryjam.moneytracker.main.MainActivity.REQUEST_CODE;
 
 public class ItemsFragment extends Fragment {
     public static final String KEY_TYPE = "type";

@@ -1,4 +1,4 @@
-package com.berryjam.moneytracker;
+package com.berryjam.moneytracker.main;
 
 interface ItemsAdapterListener {
     void onItemClick(Item item, int position);

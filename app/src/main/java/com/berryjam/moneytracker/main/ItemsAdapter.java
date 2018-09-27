@@ -1,4 +1,4 @@
-package com.berryjam.moneytracker;
+package com.berryjam.moneytracker.main;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,6 +7,8 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.berryjam.moneytracker.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
