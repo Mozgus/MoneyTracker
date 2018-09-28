@@ -41,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         floatingActionButton = findViewById(R.id.fab);
 
-        mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(), this);
-        viewPager.setAdapter(mainPagesAdapter);
-        viewPager.addOnPageChangeListener(new PageListener());
-        tabLayout.setupWithViewPager(viewPager);
         setSupportActionBar(toolbar);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         app = (App) getApplication();
         if (!app.isLoggedIn()) {
             logout();
+        } else {
+            enableTabsContent();
         }
     }
 
@@ -109,6 +107,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, EntryActivity.class));
         app.deleteAuthToken();
         finish();
+    }
+
+    private void enableTabsContent() {
+        mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(), this);
+        viewPager.setAdapter(mainPagesAdapter);
+        viewPager.addOnPageChangeListener(new PageListener());
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     class PageListener implements ViewPager.OnPageChangeListener {
