@@ -10,13 +10,15 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
-import com.berryjam.moneytracker.add.AddActivity;
 import com.berryjam.moneytracker.R;
+import com.berryjam.moneytracker.add.AddActivity;
+import com.berryjam.moneytracker.entry.EntryActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
     public static final int REQUEST_CODE = 10;
     Toolbar toolbar;
     TabLayout tabLayout;
@@ -77,6 +79,23 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.show();
         tabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         actionMode = null;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        logout();
+        return true;
+    }
+
+    private void logout() {
+        startActivity(new Intent(this, EntryActivity.class));
+        finish();
     }
 
     class PageListener implements ViewPager.OnPageChangeListener {
