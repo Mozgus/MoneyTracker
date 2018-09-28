@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.berryjam.moneytracker.add.AddActivity;
-import com.berryjam.moneytracker.Api;
+import com.berryjam.moneytracker.domain.Api;
 import com.berryjam.moneytracker.App;
 import com.berryjam.moneytracker.R;
 

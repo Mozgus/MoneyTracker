@@ -36,4 +36,7 @@
     <string name="selected">selected</string>
     <string name="menu_logout">Logout</string>
 
+    <!--Error messages-->
+    <string name="error_msg_auth">Authorization problems. It is necessary to become authorized for admission to the app.</string>
+
 </resources>
