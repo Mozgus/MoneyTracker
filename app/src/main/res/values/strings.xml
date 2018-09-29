@@ -5,6 +5,10 @@
     <string name="expenses">Expenses</string>
     <string name="balance">Balance</string>
 
+    <!--Auth screen-->
+    <string name="auth_btn_text">Sign in</string>
+    <string name="auth_version_text">Ver. 1.0 \n2018</string>
+
     <!--Add Screen-->
     <string name="add_hint_name">Name</string>
     <string name="add_hint_price">Price</string>
@@ -30,5 +34,9 @@
     <!--Menu-->
     <string name="menu_item_delete">Delete</string>
     <string name="selected">selected</string>
+    <string name="menu_logout">Logout</string>
+
+    <!--Error messages-->
+    <string name="error_msg_auth">Authorization problems. It is necessary to become authorized for admission to the app.</string>
 
 </resources>

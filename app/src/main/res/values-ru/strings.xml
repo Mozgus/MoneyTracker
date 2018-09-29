@@ -3,6 +3,8 @@
     <string name="add_hint_name">Название</string>
     <string name="add_hint_price">Цена</string>
     <string name="add_button">Добавить</string>
+    <string name="auth_btn_text">Войти</string>
+    <string name="auth_version_text">Версия 1.0 \n2018</string>
     <string name="balance">Баланс</string>
     <string name="expenses">Расходы</string>
     <string name="incomes">Доходы</string>
@@ -12,4 +14,7 @@
     <string name="delete_dialog_message">Вы уверены, что хотите удалить выделенное</string>
     <string name="menu_item_delete">Удалить</string>
     <string name="selected">выбрано</string>
+    <string name="menu_logout">Выйти</string>
+    <string name="error_msg_auth">Проблемы авторизации. Для входа в приложение необходимо авторизоваться.</string>
+
 </resources>

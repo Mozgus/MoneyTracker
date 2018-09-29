@@ -1,9 +1,11 @@
-package com.berryjam.moneytracker;
+package com.berryjam.moneytracker.main;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
+import com.berryjam.moneytracker.R;
 
 public class ItemViewHolder extends RecyclerView.ViewHolder {
     private TextView itemName;

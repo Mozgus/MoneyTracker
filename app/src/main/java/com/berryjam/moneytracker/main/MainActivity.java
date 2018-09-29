@@ -1,4 +1,4 @@
-package com.berryjam.moneytracker;
+package com.berryjam.moneytracker.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,18 +10,26 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
+import com.berryjam.moneytracker.App;
+import com.berryjam.moneytracker.R;
+import com.berryjam.moneytracker.add.AddActivity;
+import com.berryjam.moneytracker.entry.EntryActivity;
+
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
     public static final int REQUEST_CODE = 10;
+
+    private App app;
+    private ActionMode actionMode;
+
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
     MainPagesAdapter mainPagesAdapter;
     FloatingActionButton floatingActionButton;
-
-    private ActionMode actionMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         floatingActionButton = findViewById(R.id.fab);
 
-        mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(), this);
-        viewPager.setAdapter(mainPagesAdapter);
-        viewPager.addOnPageChangeListener(new PageListener());
-        tabLayout.setupWithViewPager(viewPager);
         setSupportActionBar(toolbar);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        app = (App) getApplication();
+        if (!app.isLoggedIn()) {
+            logout();
+        } else {
+            enableTabsContent();
+        }
     }
 
     @Override
@@ -74,6 +89,31 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.show();
         tabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         actionMode = null;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        logout();
+        return true;
+    }
+
+    private void logout() {
+        startActivity(new Intent(this, EntryActivity.class));
+        app.deleteAuthToken();
+        finish();
+    }
+
+    private void enableTabsContent() {
+        mainPagesAdapter = new MainPagesAdapter(getSupportFragmentManager(), this);
+        viewPager.setAdapter(mainPagesAdapter);
+        viewPager.addOnPageChangeListener(new PageListener());
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     class PageListener implements ViewPager.OnPageChangeListener {
