@@ -17,11 +17,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.berryjam.moneytracker.add.AddActivity;
-import com.berryjam.moneytracker.domain.Api;
 import com.berryjam.moneytracker.App;
 import com.berryjam.moneytracker.R;
+import com.berryjam.moneytracker.add.AddActivity;
+import com.berryjam.moneytracker.domain.Api;
+import com.berryjam.moneytracker.domain.ItemResult;
 
 import java.util.List;
 import java.util.Objects;
@@ -100,9 +102,29 @@ public class ItemsFragment extends Fragment {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             Item item = data.getParcelableExtra(AddActivity.KEY_ITEM);
             if (item.getType().equals(type)) {
-                adapter.addItem(item);
+                addItem(item);
             }
         }
+    }
+
+    private void addItem(final Item item) {
+        Call<ItemResult> call = api.addItem(item.getPrice(), item.getName(), item.getType());
+        call.enqueue(new Callback<ItemResult>() {
+            @Override
+            public void onResponse(@NonNull Call<ItemResult> call, @NonNull Response<ItemResult> response) {
+                ItemResult result = response.body();
+                assert result != null;
+                if (result.isSuccess()) {
+                    adapter.addItem(item);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ItemResult> call, @NonNull Throwable t) {
+
+            }
+        });
+
     }
 
     public void loadItems() {
@@ -122,12 +144,31 @@ public class ItemsFragment extends Fragment {
         });
     }
 
-    private void removeSelectedItem() {
+    public void removeItem(int position) {
+        int id = adapter.getItems().get(position).getId();
+        Call<ItemResult> call = api.removeItem(id);
+        call.enqueue(new Callback<ItemResult>() {
+            @Override
+            public void onResponse(@NonNull Call<ItemResult> call, @NonNull Response<ItemResult> response) {
+                ItemResult result = response.body();
+                if (result != null && result.isSuccess()) {
+                    Toast.makeText(getContext(), "Removed Successfully!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ItemResult> call, @NonNull Throwable t) {
+            }
+        });
+    }
+
+    private void removeSelectedItems() {
         final List<Integer> selected = adapter.getSelectedItems();
         for (int i = selected.size() - 1; i >= 0; i--) {
-            adapter.remove(selected.get(i));
+            int position = selected.get(i);
+            removeItem(position);
+            adapter.remove(position);
         }
-        mode.finish();
     }
 
     class ItemsAdapterListenerImpl implements ItemsAdapterListener {
@@ -195,7 +236,8 @@ public class ItemsFragment extends Fragment {
             dialog.setListener(new ConfirmDeleteFragment.Listener() {
                 @Override
                 public void onDeleteConfirmed() {
-                    removeSelectedItem();
+                    removeSelectedItems();
+                    mode.finish();
                 }
 
                 @Override
