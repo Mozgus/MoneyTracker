@@ -14,8 +14,8 @@
     <string name="add_hint_price">Price</string>
     <string name="add_button">Add</string>
 
-    <!-- TODO: Remove this placeholder text -->
-    <string name="hello_balance_fragment" translatable="false">Hello balance fragment</string>
+    <!--Statement screen-->
+    <string name="available_finances">Available finances</string>
 
     <!--Main Screen-->
     <string name="main_tab_incomes">@string/incomes</string>

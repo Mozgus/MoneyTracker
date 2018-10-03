@@ -1,13 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".main.BalanceFragment">
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/balance"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_balance_fragment" />
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/balance_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:text="@string/available_finances"
+            android:textColor="@color/medium_grey"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="54dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/colorAccent"
+            android:textSize="48sp"
+            tools:text="67000₽" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/third_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white_five"
+        app:layout_constraintBottom_toTopOf="@id/expense_income"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/balance" />
+
+    <View
+        android:id="@+id/expense_income"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.18"
+        app:layout_constraintTop_toBottomOf="@id/balance" />
+
+    <TextView
+        android:id="@+id/expenseDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="26dp"
+        android:text="@string/expenses"
+        android:textColor="@color/medium_grey"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/third_view" />
+
+    <TextView
+        android:id="@+id/expenseSum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="42dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/lightish_blue"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/third_view"
+        tools:text="5400₽" />
+
+    <View
+        android:id="@+id/first_view"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/white_five"
+        app:layout_constraintBottom_toBottomOf="@id/expense_income"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/balance" />
+
+    <TextView
+        android:id="@+id/incomeDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="26dp"
+        android:text="@string/incomes"
+        android:textColor="@color/medium_grey"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/first_view"
+        app:layout_constraintTop_toBottomOf="@id/third_view" />
+
+    <TextView
+        android:id="@+id/incomeSum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="42dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/light_green_a700"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/first_view"
+        app:layout_constraintTop_toBottomOf="@id/third_view"
+        tools:text="74000₽" />
+
+    <View
+        android:id="@+id/second_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white_five"
+        app:layout_constraintBottom_toBottomOf="@id/expense_income"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expense_income" />
+
+    <com.berryjam.moneytracker.main.DiagramView
+        android:id="@+id/diagram_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_view" />
+
+</android.support.constraint.ConstraintLayout>
