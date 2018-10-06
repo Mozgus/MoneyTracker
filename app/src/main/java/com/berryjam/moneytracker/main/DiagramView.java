@@ -12,8 +12,8 @@ import com.berryjam.moneytracker.R;
 
 
 public class DiagramView extends View {
-    private int income;
-    private int expense;
+    private long income;
+    private long expense;
 
     private Paint incomePaint = new Paint();
     private Paint expensePaint = new Paint();
@@ -34,6 +34,12 @@ public class DiagramView extends View {
 
         income = 74000;
         expense = 5400;
+    }
+
+    public void updateBalance(long income, long expense) {
+        this.income = income;
+        this.expense = expense;
+        invalidate();
     }
 
     @Override
