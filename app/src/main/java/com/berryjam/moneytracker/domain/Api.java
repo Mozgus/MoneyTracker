@@ -25,4 +25,7 @@ public interface Api {
     @POST("items/remove")
     Call<ItemResult> removeItem(@Query("id") int id);
 
+    @GET("balance")
+    Call<BalanceResult> balance();
+
 }
